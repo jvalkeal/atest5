@@ -1,0 +1,13 @@
+name: Test4
+
+on:
+  push:
+
+jobs:
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: say hi
+      run: |
+        echo hi
+
