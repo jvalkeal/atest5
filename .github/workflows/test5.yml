@@ -1,0 +1,12 @@
+name: Test4
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: jvalkeal/setup-maven@master
+      with:
+        maven-version: 3.6.2
