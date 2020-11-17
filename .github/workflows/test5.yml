@@ -1,7 +1,10 @@
 name: Test4
 
 on:
+  workflow_dispatch:
   push:
+    branches:
+      - master
 
 jobs:
   build:
