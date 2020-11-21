@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
+      - testbranch3
   pull_request:
     branches:
-      - master
+      - testbranch3
 jobs:
   printInputs:
     runs-on: ubuntu-latest
