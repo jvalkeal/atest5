@@ -2,12 +2,6 @@ name: Test6
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
 jobs:
   printInputs:
     runs-on: ubuntu-latest
