@@ -15,7 +15,31 @@ jobs:
       uses: jvalkeal/link-check@main
       id: sitelinkcheck
       with:
-        url: https://dataflow-staging.apps.pcfone.io/docs/installation/kubernetes/helm
+        url: https://dataflow-staging.apps.pcfone.io
+        linkinator-config: >
+          {
+            "recurse": true,
+            "concurrency": 10,
+            "skip": [
+              "^data:image",
+              "^http://localhost:9393",
+              "^https://localhost:9393",
+              "^http://localhost:9090",
+              "^http://localhost:3000",
+              "^http://localhost:15672",
+              "^http://localhost:7577",
+              "^http://localhost:8086",
+              "^http://192.168.99.100",
+              "^http://stateless.co",
+              "^http://docs.spring.io/spring-cloud-dataflow/docs/current/reference/htmlsingle/"
+            ],
+            "throttlelimit": 1,
+            "throttleinterval": 1000,
+            "throttle": [
+              "^https://github.com",
+              "^https://github.githubassets.com"
+            ]
+          }
 
     - name: Dump steps context
       env:
