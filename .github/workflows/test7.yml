@@ -16,6 +16,7 @@ jobs:
         url: https://google.com
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
+      if: ${{ steps.sitelinkcheck.outputs.results.status == false }}
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_MESSAGE: ${{ toJson(steps.sitelinkcheck.outputs.results) }}
