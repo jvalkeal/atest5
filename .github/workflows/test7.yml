@@ -8,12 +8,20 @@ jobs:
     name: Slack Notification
     runs-on: ubuntu-latest
     steps:
+
     - uses: actions/checkout@v2
+
     - name: Check Links
       uses: jvalkeal/link-check@main
       id: sitelinkcheck
       with:
         url: https://google.com
+
+    - name: Dump steps context
+      env:
+        STEPS_CONTEXT: ${{ toJson(steps) }}
+      run: echo "$STEPS_CONTEXT"
+
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
       if: ${{ steps.sitelinkcheck.outputs.results.status == false }}
