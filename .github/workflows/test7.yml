@@ -15,7 +15,7 @@ jobs:
       uses: jvalkeal/link-check@main
       id: sitelinkcheck
       with:
-        url: https://google.com
+        url: https://dataflow-staging.apps.pcfone.io/docs/installation/kubernetes/helm
 
     - name: Dump steps context
       env:
