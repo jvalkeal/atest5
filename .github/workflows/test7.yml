@@ -35,7 +35,7 @@ jobs:
               "^http://docs.spring.io/spring-cloud-dataflow/docs/current/reference/htmlsingle/"
             ],
             "throttlelimit": 1,
-            "throttleinterval": 400,
+            "throttleinterval": 1000,
             "throttle": [
               "^https://github.com",
               "^https://github.githubassets.com"
