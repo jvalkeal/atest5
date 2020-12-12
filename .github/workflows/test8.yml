@@ -3,15 +3,15 @@ name: Staging Check
 on:
   workflow_dispatch:
 
-strategy:
-  matrix:
-    url:
-    - https://dataflow-staging.apps.pcfone.io
-    - https://dataflow-staging.apps.pcfone.io/docs/2.8.0.SNAPSHOT
 jobs:
   sitecheck:
     name: Slack Notification
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        url:
+        - https://dataflow-staging.apps.pcfone.io
+        - https://dataflow-staging.apps.pcfone.io/docs/2.8.0.SNAPSHOT
     steps:
     - uses: actions/checkout@v2
     - name: Check Links
