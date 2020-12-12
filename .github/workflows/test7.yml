@@ -16,7 +16,8 @@ jobs:
       id: sitelinkcheck
       with:
         url: https://dataflow-staging.apps.pcfone.io
-        linkinator-config: >
+        fail: false
+        config: >
           {
             "recurse": true,
             "concurrency": 10,
@@ -34,7 +35,7 @@ jobs:
               "^http://docs.spring.io/spring-cloud-dataflow/docs/current/reference/htmlsingle/"
             ],
             "throttlelimit": 1,
-            "throttleinterval": 1000,
+            "throttleinterval": 400,
             "throttle": [
               "^https://github.com",
               "^https://github.githubassets.com"
@@ -51,5 +52,5 @@ jobs:
       if: ${{ fromJson(steps.sitelinkcheck.outputs.results).status == false }}
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_MESSAGE: ${{ toJson(steps.sitelinkcheck.outputs.results) }}
+        SLACK_MESSAGE: ${{ fromJson(steps.sitelinkcheck.outputs.results).brokenLinks }}
         SLACK_TITLE: Hi from link check
