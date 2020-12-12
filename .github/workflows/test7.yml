@@ -1,16 +1,14 @@
-name: Slack Notification Demo
+name: Site Check
 
 on:
   workflow_dispatch:
 
 jobs:
-  slackNotification:
+  sitecheck:
     name: Slack Notification
     runs-on: ubuntu-latest
     steps:
-
     - uses: actions/checkout@v2
-
     - name: Check Links
       uses: jvalkeal/link-check@main
       id: sitelinkcheck
@@ -41,12 +39,6 @@ jobs:
               "^https://github.githubassets.com"
             ]
           }
-
-    - name: Dump steps context
-      env:
-        STEPS_CONTEXT: ${{ toJson(steps) }}
-      run: echo "$STEPS_CONTEXT"
-
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
       if: ${{ fromJson(steps.sitelinkcheck.outputs.results).status == false }}
