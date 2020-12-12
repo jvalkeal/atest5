@@ -52,5 +52,5 @@ jobs:
       if: ${{ fromJson(steps.sitelinkcheck.outputs.results).status == false }}
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_MESSAGE: ${{ fromJson(steps.sitelinkcheck.outputs.results).brokenLinks }}
+        SLACK_MESSAGE: ${{ toJson(fromJson(steps.sitelinkcheck.outputs.results).brokenLinks) }}
         SLACK_TITLE: Hi from link check
