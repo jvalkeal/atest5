@@ -53,4 +53,4 @@ jobs:
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_MESSAGE: ${{ toJson(fromJson(steps.sitelinkcheck.outputs.results).brokenLinks) }}
-        SLACK_TITLE: Hi from link check
+        SLACK_TITLE: Link Check Failures
