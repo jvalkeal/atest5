@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version:
+        path:
         - /
         - /docs/2.8.0.SNAPSHOT
     steps:
@@ -18,7 +18,7 @@ jobs:
       uses: jvalkeal/link-check@main
       id: sitelinkcheck
       with:
-        url: https://dataflow-staging.apps.pcfone.io${{ matrix.url }}
+        url: https://dataflow-staging.apps.pcfone.io${{ matrix.path }}
         fail: false
         config: >
           {
