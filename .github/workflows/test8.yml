@@ -7,24 +7,26 @@ jobs:
   sitecheck:
     name: Link Check
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        path:
-        - /
-        - /docs/2.8.0.SNAPSHOT
     steps:
     - uses: actions/checkout@v2
     - name: Check Links
       uses: jvalkeal/link-check@main
       id: sitelinkcheck
       with:
-        url: https://dataflow-staging.apps.pcfone.io${{ matrix.path }}
         fail: false
         config: >
           {
+            "paths": [
+              "https://dataflow-staging.apps.pcfone.io",
+              "https://dataflow-staging.apps.pcfone.io/docs/2.8.0.SNAPSHOT",
+              "https://dataflow-staging.apps.pcfone.io/docs/2.6.x",
+              "https://dataflow-staging.apps.pcfone.io/docs/2.5.x",
+              "https://dataflow-staging.apps.pcfone.io/docs/2.4.x",
+              "https://dataflow-staging.apps.pcfone.io/docs/2.3.x",
+              "https://dataflow-staging.apps.pcfone.io/docs/2.2.x"
+            ],
             "recurse": true,
-            "concurrency": 15,
-            "timeout": 30000,
+            "concurrency": 10,
             "skip": [
               "^data:image",
               "^http://localhost:9393",
@@ -39,7 +41,7 @@ jobs:
               "^http://docs.spring.io/spring-cloud-dataflow/docs/current/reference/htmlsingle/"
             ],
             "throttlelimit": 1,
-            "throttleinterval": 1000,
+            "throttleinterval": 800,
             "throttle": [
               "^https://github.com",
               "^https://github.githubassets.com"
@@ -51,6 +53,6 @@ jobs:
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_MESSAGE: ${{ toJson(fromJson(steps.sitelinkcheck.outputs.results).brokenLinks) }}
-        SLACK_TITLE: Link Check Failures https://dataflow-staging.apps.pcfone.io${{ matrix.path }}
+        SLACK_TITLE: Link Check Failures https://dataflow-staging.apps.pcfone.io
         SLACK_COLOR: danger
         SLACK_FOOTER: Sent from Github Actions
