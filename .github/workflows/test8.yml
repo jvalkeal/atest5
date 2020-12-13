@@ -23,8 +23,8 @@ jobs:
         config: >
           {
             "recurse": true,
-            "concurrency": 20,
-            "timeout": 10000,
+            "concurrency": 15,
+            "timeout": 30000,
             "skip": [
               "^data:image",
               "^http://localhost:9393",
