@@ -50,4 +50,4 @@ jobs:
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_MESSAGE: ${{ toJson(fromJson(steps.sitelinkcheck.outputs.results).brokenLinks) }}
-        SLACK_TITLE: Link Check Failures
+        SLACK_TITLE: Link Check Failures https://dataflow-staging.apps.pcfone.io${{ matrix.path }}
