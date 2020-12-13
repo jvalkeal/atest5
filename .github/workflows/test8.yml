@@ -5,7 +5,7 @@ on:
 
 jobs:
   sitecheck:
-    name: Slack Notification
+    name: Link Check
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -23,7 +23,8 @@ jobs:
         config: >
           {
             "recurse": true,
-            "concurrency": 30,
+            "concurrency": 20,
+            "timeout": 10000,
             "skip": [
               "^data:image",
               "^http://localhost:9393",
@@ -51,3 +52,5 @@ jobs:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_MESSAGE: ${{ toJson(fromJson(steps.sitelinkcheck.outputs.results).brokenLinks) }}
         SLACK_TITLE: Link Check Failures https://dataflow-staging.apps.pcfone.io${{ matrix.path }}
+        SLACK_COLOR: danger
+        SLACK_FOOTER: Sent from Github Actions
