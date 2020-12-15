@@ -1,0 +1,15 @@
+name: Deploy Flow Test1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: avakar/create-deployment@v1
+        with:
+          auto_merge: false
+          environment: test
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
