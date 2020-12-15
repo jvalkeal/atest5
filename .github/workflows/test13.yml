@@ -1,4 +1,4 @@
-name: Env Deploy Test
+name: Deploy Loop Test
 
 on:
   workflow_dispatch:
