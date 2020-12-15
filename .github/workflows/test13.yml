@@ -1,0 +1,12 @@
+name: Env Deploy Test
+
+on:
+  workflow_dispatch:
+  deployment:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - run: echo hi
