@@ -1,7 +1,6 @@
 name: Deploy Flow Test2
 
-on:
-  deploy:
+on: deploy
 
 jobs:
   deploy:
