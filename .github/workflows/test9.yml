@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: crazy-max/ghaction-github-labeler@v3
+      - uses: jvalkeal/ghaction-github-labeler@gh120-work1
         if: success()
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
