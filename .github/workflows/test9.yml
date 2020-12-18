@@ -14,7 +14,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           yaml-file: .github/shared-labels.yml
           skip-delete: false
-          dry-run: false
+          dry-run: true
           exclude: |
             help*
             *issue
@@ -24,7 +24,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           yaml-file: .github/project-labels.yml
           skip-delete: false
-          dry-run: false
+          dry-run: true
           exclude: |
             help*
             *issue

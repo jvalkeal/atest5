@@ -1,45 +1,72 @@
-- name: "bug"
-  color: "fc2929"
-  description: ""
-- name: "duplicate"
-  color: "cccccc"
-  description: ""
-- name: "enhancement"
-  color: "84b6eb"
-  description: ""
-- name: "help wanted"
-  color: "159818"
-  description: ""
-- name: "invalid"
-  color: "e6e6e6"
-  description: ""
-- name: "question"
-  color: "cc317c"
-  description: ""
-- name: "wontfix"
-  color: "ffffff"
-  description: ""
-- name: "task"
-  color: "d4c5f9"
-  description: ""
-- name: "test"
-  color: "fbca04"
-  description: ""
-- name: "jepsen"
-  color: "fef2c0"
-  description: ""
-- name: "docs"
-  color: "207de5"
-  description: ""
-- name: "backport"
-  color: "5319e7"
-  description: ""
-- name: "Epic"
-  color: "3E4B9E"
-  description: ""
-- name: "dependencies"
-  color: "0366d6"
-  description: "Pull requests that update a dependency file"
-- name: "blocker"
-  color: "c40d2c"
-  description: ""
+- name: status/invalid
+  color: FEF2C0
+  description: Mistake, bogus, old, bye bye
+- name: type/question
+  color: D4C5F9
+  description: Is a plain question
+- name: area/core
+  color: F9D0C4
+  description: Belongs to machine core
+- name: for/team-attention
+  color: E99695
+  description: For team attention
+- name: status/need-triage
+  color: FEF2C0
+  description: Team needs to triage and take a first look
+- name: status/need-design
+  color: FEF2C0
+  description: Vague so need some proper design
+- name: status/need-investigation
+  color: FEF2C0
+  description: Oh need to look under a hood
+- name: status/need-feedback
+  color: FEF2C0
+  description: Calling participant to provide feedback
+- name: status/duplicate
+  color: FEF2C0
+  description: There were an existing issue
+- name: status/declined
+  color: FEF2C0
+  description: Issue has been declined
+- name: status/complete
+  color: FEF2C0
+  description: Issue is now complete
+- name: status/in-progress
+  color: FEF2C0
+  description: Something is happening
+- name: status/on-hold
+  color: FEF2C0
+  description: For various reasons is on hold
+- name: type/feature
+  color: D4C5F9
+  description: Is a feature request
+- name: type/bug
+  color: D4C5F9
+  description: Is a bug report
+- name: type/idea
+  color: D4C5F9
+  description: Is just an idea
+- name: type/enhancement
+  color: D4C5F9
+  description: Is an enhancement request
+- name: type/help-needed
+  color: D4C5F9
+  description: Calling help
+- name: for/marketing
+  color: E99695
+  description: For marketing
+- name: area/uml
+  color: F9D0C4
+  description: Belongs to uml feature
+- name: area/persistense
+  color: F9D0C4
+  description: Belongs to persistense feature
+- name: area/documentation
+  color: F9D0C4
+  description: Belongs to documentation
+- name: type/backport
+  color: D4C5F9
+  description: Is a issue to track backport, use with branch/xxx
+- name: area/tests
+  color: F9D0C4
+  description: Belongs to tests
