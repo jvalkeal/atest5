@@ -14,17 +14,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           yaml-file: .github/shared-labels.yml
           skip-delete: false
-          dry-run: true
-          exclude: |
-            help*
-            *issue
+          dry-run: false
       - name: Project Labels
         uses: crazy-max/ghaction-github-labeler@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           yaml-file: .github/project-labels.yml
           skip-delete: false
-          dry-run: true
-          exclude: |
-            help*
-            *issue
+          dry-run: false
