@@ -1,4 +1,3 @@
----
 - name: status/invalid
   color: FEF2C0
   description: Mistake, bogus, old, bye bye
@@ -71,7 +70,7 @@
 - name: area/tests
   color: F9D0C4
   description: Belongs to tests
----
+
 - name: branch/2.2.x
   color: BFDADC
   description: Issue for a maintenance branch
