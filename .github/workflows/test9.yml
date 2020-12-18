@@ -8,11 +8,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: crazy-max/ghaction-github-labeler@v3
-        if: success()
+      - name: Shared Labels
+        uses: crazy-max/ghaction-github-labeler@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          yaml-file: .github/labels.yml
+          yaml-file: .github/shared-labels.yml
+          skip-delete: false
+          dry-run: false
+          exclude: |
+            help*
+            *issue
+      - name: Project Labels
+        uses: crazy-max/ghaction-github-labeler@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          yaml-file: .github/project-labels.yml
           skip-delete: false
           dry-run: false
           exclude: |
