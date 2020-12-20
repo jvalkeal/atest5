@@ -2,7 +2,7 @@ name: Labeler1
 
 on:
   issues:
-    types: [labeled]
+    types: [labeled, unlabeled]
 
 jobs:
   labeler:
