@@ -24,7 +24,7 @@ jobs:
               {
                 "type": "ifThen",
                 "if": "hasLabels(['for/backport'])",
-                "then": "createIssue()"
+                "then": "createIssue('Backport: ' + title,'Backport #' + number)"
               }
             ]
           }
