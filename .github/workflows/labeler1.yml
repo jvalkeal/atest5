@@ -2,13 +2,29 @@ name: Labeler1
 
 on:
   issues:
+    types: [labeled]
 
 jobs:
   labeler:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Handle Zoo Control
+      uses: jvalkeal/build-zoo-handler@gh21-work1
+      with:
+        issue-handler-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-handler-config: >
+          {
+            "actions": [
+              {
+                "type": "ifThen",
+                "if": "hasLabels(['for/backport'])",
+                "then": "createIssue()"
+              }
+            ]
+          }
