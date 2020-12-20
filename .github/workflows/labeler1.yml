@@ -15,10 +15,10 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - name: Handle Zoo Control
-      uses: jvalkeal/build-zoo-handler@gh21-work1
+      uses: jvalkeal/issue-handler@initial-work
       with:
-        issue-handler-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-handler-config: >
+        token: ${{ secrets.GITHUB_TOKEN }}
+        config: >
           {
             "actions": [
               {
