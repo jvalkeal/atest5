@@ -28,7 +28,7 @@ jobs:
               },
               {
                 "type": "ifThen",
-                "if": "labelRemoved(['area/persistense'])",
+                "if": "labelRemoved('area/persistense')",
                 "then": "closeIssues(findIssuesByTitle('Backport: ' + title))"
               }
             ]
