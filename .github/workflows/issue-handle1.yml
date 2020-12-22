@@ -3,7 +3,7 @@ name: IssueHandle1
 on:
   workflow_dispatch:
   issues:
-    types: [opened]
+    types: [opened, closed, labeled, unlabeled]
 
 jobs:
   labeler:
@@ -23,6 +23,7 @@ jobs:
           {
             "actions": [
               {
+                "name": "Mark new issue to get triaged",
                 "type": "ifThen",
                 "if": "isEvent('issues') && isAction('opened') && !isMilestone() && !hasLabels()",
                 "then": "labelIssue(['status/need-triage'])"
