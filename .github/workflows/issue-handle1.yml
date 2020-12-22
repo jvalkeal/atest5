@@ -1,0 +1,31 @@
+name: IssueHandle1
+
+on:
+  workflow_dispatch:
+  issues:
+    types: [opened]
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Handle Issues
+      uses: jvalkeal/issue-handler@initial-work
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        config: >
+          {
+            "actions": [
+              {
+                "type": "ifThen",
+                "if": "isEvent('issues') && isAction('opened') && !isMilestone() && !hasLabels()",
+                "then": "labelIssue('status/need-triage')"
+              }
+            ]
+          }
