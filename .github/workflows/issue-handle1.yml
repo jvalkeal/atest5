@@ -27,6 +27,15 @@ jobs:
                 "type": "ifThen",
                 "if": "isEvent('issues') && isAction('opened') && !isMilestone() && !hasLabels()",
                 "then": "labelIssue(['status/need-triage'])"
+              },
+              {
+                "name": "Create backport issues when labeled",
+                "type": "manageBackportIssues",
+                "whenLabeled": "'for/backport'",
+                "fromLabels": "getLabelsStartsWith(['branch/'])",
+                "additionalLabels": "['type/backport']",
+                "title": "'Backport: ' + title",
+                "body": "'Backport #' + number"
               }
             ]
           }
