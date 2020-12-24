@@ -3,7 +3,7 @@ name: IssueHandle1
 on:
   workflow_dispatch:
   issues:
-    types: [opened, closed, labeled, unlabeled]
+    types: [opened, labeled]
 
 jobs:
   labeler:
