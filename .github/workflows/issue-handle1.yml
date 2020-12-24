@@ -24,6 +24,8 @@ jobs:
                 "then": "labelIssue(['status/need-triage'])"
               },
               {
+                "name": "Create net backport issues",
+                "type": "manageBackportIssues",
                 "whenLabeled": "labeledStartsWith(['branch/'])",
                 "whenLabels": "labelsContains(['for/backport'])",
                 "fromLabels": "labeledStartsWith(['branch/'])",
