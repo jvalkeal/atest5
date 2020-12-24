@@ -24,11 +24,10 @@ jobs:
                 "then": "labelIssue(['status/need-triage'])"
               },
               {
-                "name": "Create backport issues when labeled",
-                "type": "manageBackportIssues",
-                "whenLabeled": "'for/backport'",
-                "fromLabels": "getLabelsStartsWith(['branch/'])",
-                "additionalLabels": "['type/backport']",
+                "whenLabeled": "labeledStartsWith(['branch/'])",
+                "whenLabels": "labelsContains(['for/backport'])",
+                "fromLabels": "labeledStartsWith(['branch/'])",
+                "additionalLabels": "'fakelabel'",
                 "title": "title",
                 "body": "'Backport #' + number"
               }
