@@ -3,12 +3,17 @@ name: IssueHandle1
 on:
   workflow_dispatch:
   issues:
-    types: [opened, labeled]
+    types: [opened, closed, labeled, unlabeled]
 
 jobs:
   labeler:
     runs-on: ubuntu-latest
     steps:
+
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
 
     - name: Handle Issues
       uses: jvalkeal/issue-handler@manageBackportIssues-work1
