@@ -36,7 +36,6 @@ jobs:
                 "whenLabels": "labelsContains(['for/backport'])",
                 "fromLabels": "labeledStartsWith(['branch/'])",
                 "additionalLabels": "'type/backport'",
-                "title": "title",
                 "body": "'Backport #' + number"
               }
             ]
