@@ -11,7 +11,7 @@ jobs:
     steps:
 
     - name: Handle Issues
-      uses: jvalkeal/issue-handler@initial-work
+      uses: jvalkeal/issue-handler@manageBackportIssues-work1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         config: >
