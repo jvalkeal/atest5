@@ -16,7 +16,7 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - name: Handle Issues
-      uses: jvalkeal/issue-handler@manageBackportIssues-work1
+      uses: jvalkeal/issue-handler@main
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         config: >
@@ -29,11 +29,11 @@ jobs:
                 "then": "labelIssue(['status/need-triage'])"
               },
               {
-                "name": "Create net backport issues",
+                "name": "Manage backport issues",
                 "type": "manageBackportIssues",
                 "whenLabeled": "labeledStartsWith(['branch/'])",
                 "whenUnlabeled": "labeledStartsWith(['branch/'])",
-                "whenLabels": "labelsContains(['for/backport'])",
+                "whenLabels": "labelsContainsAny(['for/backport'])",
                 "fromLabels": "labeledStartsWith(['branch/'])",
                 "additionalLabels": "'type/backport'",
                 "body": "'Backport #' + number"
