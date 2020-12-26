@@ -13,6 +13,12 @@ jobs:
         days-before-stale: 2
         days-before-close: 1
         stale-issue-message: 'Hi, stale issue'
+        close-issue-message: 'Closing stale issue due to inactivity'
         stale-issue-label: status/stale
         close-issue-label: status/closed-as-stale
-        debug-only: true
+        stale-pr-message: 'Hi, stale pr'
+        close-pr-message: 'Closing stale pr due to inactivity'
+        stale-pr-label: status/stale
+        close-pr-label: status/closed-as-stale
+        exempt-issue-labels: status/on-hold
+        debug-only: false
