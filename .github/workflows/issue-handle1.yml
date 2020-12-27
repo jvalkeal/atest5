@@ -16,16 +16,19 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - name: Handle Issues
-      uses: jvalkeal/issue-handler@backport-title
+      uses: jvalkeal/issue-handler@gh9-work1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         config: >
           {
+            "data": {
+              "contributors": ["jvalkeal"]
+            }
             "recipes": [
               {
                 "name": "Mark new issue to get triaged",
                 "type": "ifThen",
-                "if": "isEvent('issues') && isAction('opened') && !isMilestone() && !hasLabels()",
+                "if": "isEvent('issues') && isAction('opened') && !isMilestone() && !hasLabels() && !dataInArray('contributors', actor)",
                 "then": "labelIssue(['status/need-triage'])"
               },
               {
