@@ -23,7 +23,7 @@ jobs:
           {
             "data": {
               "contributors": ["jvalkeal"]
-            }
+            },
             "recipes": [
               {
                 "name": "Mark new issue to get triaged",
