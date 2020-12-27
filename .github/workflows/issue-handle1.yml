@@ -22,14 +22,14 @@ jobs:
         config: >
           {
             "data": {
-              "contributors": ["jvalkeal"]
+              "team": ["jvalkeal"]
             },
             "recipes": [
               {
                 "name": "Mark new issue to get triaged",
                 "type": "ifThen",
-                "if": "isEvent('issues') && isAction('opened') && !isMilestone() && !hasLabels() && !dataInArray('contributors', actor)",
-                "then": "labelIssue(['status/need-triage'])"
+                "if": "isEvent('issues') && isAction('opened') && !isMilestone() && !hasLabels() && !dataInArray('team', actor)",
+                "then": "labelIssue('status/need-triage')"
               },
               {
                 "name": "Manage backport issues",
