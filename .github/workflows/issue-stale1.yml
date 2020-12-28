@@ -21,4 +21,6 @@ jobs:
         stale-pr-label: status/stale
         close-pr-label: status/closed-as-stale
         exempt-issue-labels: status/on-hold
-        debug-only: false
+        operations-per-run: 1
+        ascending: true
+        debug-only: true
