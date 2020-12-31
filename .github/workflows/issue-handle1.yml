@@ -36,7 +36,7 @@ jobs:
               {
                 "name": "Label team when issue owner comments",
                 "type": "ifThen",
-                "if": "isEvent('issue_comment') && isAction('created') && actor == context.issue.user.login && !labelsContainsAny('for/team-attention')",
+                "if": "isEvent('issue_comment') && isAction('created') && actor == context.issue.user.login && !labelsContainsAny('status/need-feedback')",
                 "then": "[labelIssue('for/team-attention'), removeLabel('status/need-feedback')]"
               },
               {
