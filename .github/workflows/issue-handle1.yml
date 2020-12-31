@@ -34,16 +34,16 @@ jobs:
                 "then": "labelIssue('status/need-triage')"
               },
               {
-                "name": "Notify team if user has commented",
+                "name": "Switch to team if user comments",
                 "type": "ifThen",
-                "if": "isEvent('issue_comment') && isAction('created') && actor == context.issue.user.login && labelsContainsAny('status/need-feedback')",
-                "then": "[labelIssue('for/team-attention'), removeLabel('status/need-feedback')]"
+                "if": "isEvent('issue_comment') && isAction('created') && actor == context.issue.user.login && labelsContainsAny('for/team-attention')",
+                "then": "[labelIssue('status/need-feedback'), removeLabel('for/team-attention')]"
               },
               {
-                "name": "Notify user if team has commented",
+                "name": "Switch to user if team comments",
                 "type": "ifThen",
                 "if": "isEvent('issue_comment') && isAction('created') && dataInArray('team', actor) && labelsContainsAny('for/team-attention')",
-                "then": "[labelIssue('status/need-feedback', removeLabel('for/team-attention'))]"
+                "then": "[labelIssue('for/team-attention', removeLabel('status/need-feedback'))]"
               },
               {
                 "name": "Manage backport issues",
