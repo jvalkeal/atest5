@@ -42,7 +42,7 @@ jobs:
               {
                 "name": "Label user when team comments",
                 "type": "ifThen",
-                "if": "isEvent('issue_comment') && isAction('created') && dataInArray('team', actor) && !labelsContainsAny('status/need-feedback')",
+                "if": "isEvent('issue_comment') && isAction('created') && dataInArray('team', actor) && labelsContainsAny('for/team-attention')",
                 "then": "[removeLabel('for/team-attention'), labelIssue('status/need-feedback')]"
               },
               {
