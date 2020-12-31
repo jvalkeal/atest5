@@ -18,7 +18,7 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - name: Handle Issues
-      uses: jvalkeal/issue-handler@v0.0.3
+      uses: jvalkeal/issue-handler@remove-label-work1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         config: >
@@ -37,7 +37,7 @@ jobs:
                 "name": "Wait issue owner comment",
                 "type": "ifThen",
                 "if": "isEvent('issue_comment') && isAction('created') && !dataInArray('team', actor) && context.comment.user.login == context.issue.user.login",
-                "then": "labelIssue('for/team-attention')"
+                "then": "labelIssue('for/team-attention') && removeLabel('status/need-feedback')"
               },
               {
                 "name": "Manage backport issues",
