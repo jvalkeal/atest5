@@ -18,7 +18,7 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - name: Handle Issues
-      uses: jvalkeal/issue-handler@main
+      uses: jvalkeal/issue-handler@v0.0.4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         config: >
