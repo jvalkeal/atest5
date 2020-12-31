@@ -36,7 +36,7 @@ jobs:
               {
                 "name": "Wait issue owner comment",
                 "type": "ifThen",
-                "if": "isEvent('issue_comment') && isAction('created') && !dataInArray('team', actor) && context.comment.user.login == context.issue.user.login",
+                "if": "isEvent('issue_comment') && isAction('created') && context.comment.user.login == context.issue.user.login",
                 "then": "[labelIssue('for/team-attention'), removeLabel('status/need-feedback')]"
               },
               {
