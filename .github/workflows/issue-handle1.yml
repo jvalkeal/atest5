@@ -34,6 +34,12 @@ jobs:
                 "then": "labelIssue('status/need-triage')"
               },
               {
+                "name": "Wait issue owner comment",
+                "type": "ifThen",
+                "if": "isEvent('issue_comment') && isAction('created') && context.comment.user.login == context.issue.user.login",
+                "then": "labelIssue('for/team-attention')"
+              },
+              {
                 "name": "Manage backport issues",
                 "type": "manageBackportIssues",
                 "whenLabeled": "labeledStartsWith(['branch/'])",
