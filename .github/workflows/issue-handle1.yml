@@ -43,7 +43,7 @@ jobs:
                 "name": "Notify user if team has commented",
                 "type": "ifThen",
                 "if": "isEvent('issue_comment') && isAction('created') && dataInArray('team', actor) && labelsContainsAny('for/team-attention')",
-                "then": "[removeLabel('for/team-attention'), labelIssue('status/need-feedback')]"
+                "then": "[labelIssue('status/need-feedback', removeLabel('for/team-attention'))]"
               },
               {
                 "name": "Manage backport issues",
