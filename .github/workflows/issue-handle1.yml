@@ -36,13 +36,13 @@ jobs:
               {
                 "name": "Label team when issue owner comments",
                 "type": "ifThen",
-                "if": "isEvent('issue_comment') && isAction('created') && context.comment.user.login == context.issue.user.login && !labelsContainsAny('status/need-feedback')",
+                "if": "isEvent('issue_comment') && isAction('created') && context.comment.user.login == context.issue.user.login && !labelsContainsAny('for/team-attention')",
                 "then": "[labelIssue('for/team-attention'), removeLabel('status/need-feedback')]"
               },
               {
                 "name": "Label user when team comments",
                 "type": "ifThen",
-                "if": "isEvent('issue_comment') && isAction('created') && dataInArray('team', actor) && !labelsContainsAny('for/team-attention')",
+                "if": "isEvent('issue_comment') && isAction('created') && dataInArray('team', actor) && !labelsContainsAny('status/need-feedback')",
                 "then": "[removeLabel('for/team-attention'), labelIssue('status/need-feedback')]"
               },
               {
