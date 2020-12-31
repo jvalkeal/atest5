@@ -36,7 +36,7 @@ jobs:
               {
                 "name": "Switch to team if user comments",
                 "type": "ifThen",
-                "if": "isEvent('issue_comment') && isAction('created') && actor == context.issue.user.login && labelsContainsAny(for/team-attention')",
+                "if": "isEvent('issue_comment') && isAction('created') && actor == context.issue.user.login && labelsContainsAny('for/team-attention')",
                 "then": "[labelIssue('status/need-feedback'), removeLabel('for/team-attention')]"
               },
               {
