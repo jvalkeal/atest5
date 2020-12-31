@@ -42,7 +42,7 @@ jobs:
               {
                 "name": "Switch to user if team comments",
                 "type": "ifThen",
-                "if": "isEvent('issue_comment') && isAction('created') && dataInArray('team', actor) && labelsContainsAny(status/need-feedback')",
+                "if": "isEvent('issue_comment') && isAction('created') && dataInArray('team', actor) && labelsContainsAny('status/need-feedback')",
                 "then": "[labelIssue('for/team-attention', removeLabel('status/need-feedback'))]"
               },
               {
