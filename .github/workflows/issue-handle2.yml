@@ -25,7 +25,8 @@ jobs:
             "recipes": [
               {
                 "name": "Handle stale issues",
-                "type": "staleIssues"
+                "type": "staleIssues",
+                "issueDaysBeforeStale": 7
               }
             ]
           }
