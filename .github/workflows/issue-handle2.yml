@@ -1,0 +1,31 @@
+name: IssueHandle2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+
+    - name: Handle Issues
+      uses: jvalkeal/issue-handler@gh3-work1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        config: >
+          {
+            "data": {
+              "team": ["jvalkeal"]
+            },
+            "recipes": [
+              {
+                "name": "Handle stale issues",
+                "type": "staleIssues"
+              }
+            ]
+          }
