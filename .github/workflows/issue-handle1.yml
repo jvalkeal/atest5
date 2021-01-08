@@ -6,6 +6,10 @@ on:
     types: [opened, closed, labeled, unlabeled]
   issue_comment:
     types: [created]
+  pull_request:
+    types: [opened, closed, labeled, unlabeled]
+  pull_request_review_comment:
+    types: [created]
 
 jobs:
   labeler:
@@ -18,7 +22,7 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - name: Handle Issues
-      uses: jvalkeal/issue-handler@gh11-13-work1
+      uses: jvalkeal/issue-handler@gh16-work1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         config: >
@@ -30,19 +34,19 @@ jobs:
               {
                 "name": "Mark new issue to get triaged",
                 "type": "ifThen",
-                "if": "isEvent('issues') && isAction('opened') && !isMilestone() && !hasLabels() && !dataInArray('team', actor)",
+                "if": "eventContainsAny(['issues','pull_request']) && isAction('opened') && !isMilestone() && !hasLabels() && !dataInArray('team', actor)",
                 "then": "labelIssue('status/need-triage')"
               },
               {
                 "name": "Switch to team if user comments",
                 "type": "ifThen",
-                "if": "isEvent('issue_comment') && isAction('created') && actor == context.payload.issue.user.login && labelsContainsAny('status/need-feedback')",
+                "if": "eventContainsAny(['issue_comment','pull_request_review_comment']) && isAction('created') && actor == context.payload.issue.user.login && labelsContainsAny('status/need-feedback')",
                 "then": "[labelIssue('for/team-attention'), removeLabel('status/need-feedback')]"
               },
               {
                 "name": "Switch to user if team comments",
                 "type": "ifThen",
-                "if": "isEvent('issue_comment') && isAction('created') && dataInArray('team', actor) && labelsContainsAny('for/team-attention') ",
+                "if": "eventContainsAny(['issue_comment','pull_request_review_comment']) && isAction('created') && dataInArray('team', actor) && labelsContainsAny('for/team-attention') ",
                 "then": "[labelIssue('status/need-feedback', removeLabel('for/team-attention'))]"
               },
               {
