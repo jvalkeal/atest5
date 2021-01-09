@@ -22,7 +22,7 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
 
     - name: Handle Issues
-      uses: jvalkeal/issue-handler@gh16-work1
+      uses: jvalkeal/issue-handler@gh2-withpr-work1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         config: >
