@@ -17,6 +17,7 @@ jobs:
       uses: jvalkeal/issue-handler@gh3-work2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+        dry-run: true
         config: >
           {
             "data": {
