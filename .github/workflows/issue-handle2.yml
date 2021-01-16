@@ -27,7 +27,8 @@ jobs:
               {
                 "name": "Handle stale issues",
                 "type": "staleIssues",
-                "issueBeforeStale": 3,
+                "issueSince": 1,
+                "issueBeforeStale": "PT15M",
                 "issueBeforeClose": "PT5M",
                 "issueStaleMessage": "Marking as stale",
                 "issueCloseMessage": "Closing as stale",
