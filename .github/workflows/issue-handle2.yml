@@ -27,7 +27,7 @@ jobs:
               {
                 "name": "Handle stale issues",
                 "type": "staleIssues",
-                "issueSince": "2021-01-01",
+                "issueSince": "2020-12-31",
                 "issueBeforeStale": "PT15M",
                 "issueBeforeClose": "PT5M",
                 "issueStaleMessage": "Marking as stale",
