@@ -35,7 +35,7 @@ jobs:
                 "issueStaleLabel": "status/stale",
                 "issueCloseLabel": "status/closed-as-stale",
                 "issueExemptLabels": "status/on-hold",
-                "issueRemoveStaleWhenUpdated": true
+                "issueUnstaleWhenUpdated": true
               }
             ]
           }
