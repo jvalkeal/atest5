@@ -34,7 +34,11 @@ jobs:
                 "issueCloseMessage": "Closing as stale",
                 "issueStaleLabel": "status/stale",
                 "issueCloseLabel": "status/closed-as-stale",
-                "issueExemptLabels": "status/on-hold",
+                "issueExemptLabels": [
+                  "status/on-hold",
+                  "type/bug",
+                  "type/need-investigation"
+                ],
                 "issueUnstaleWhenUpdated": true
               }
             ]
