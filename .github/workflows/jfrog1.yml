@@ -26,6 +26,9 @@ jobs:
           --repo-resolve=libs-snapshot \
           --repo-deploy=libs-snapshot \
           --use-wrapper=true
+        echo JFROG_CLI_BUILD_NAME=test-build-project >> $GITHUB_ENV
+        echo JFROG_CLI_BUILD_NUMBER=$GITHUB_RUN_NUMBER >> $GITHUB_ENV
+        echo JFROG_CLI_BUILD_URL=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID >> $GITHUB_ENV
     - name: Echo jfrog stuff
       run: |
           echo JFROG_CLI_LOG_LEVEL $JFROG_CLI_LOG_LEVEL
