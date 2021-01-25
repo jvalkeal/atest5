@@ -28,7 +28,7 @@ jobs:
         config: >
           {
             "data": {
-              "team": ["jvalkeal"]
+              "team": ["jvalkeal", "tzolov"]
             },
             "recipes": [
               {
