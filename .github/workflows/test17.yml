@@ -1,0 +1,17 @@
+name: M2 Test1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Server
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Print
+      run: |
+        echo $M2_HOME
