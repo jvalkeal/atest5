@@ -22,5 +22,5 @@ jobs:
           esac
         done
         if [ -n "$out" ]; then
-          echo "::warning ::Diff $out"
+          echo "::warning ::Diff %0A for files"
         fi
