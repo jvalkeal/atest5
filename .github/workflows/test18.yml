@@ -11,4 +11,4 @@ jobs:
     - uses: actions/checkout@v2
     - name: Diff
       run: |
-        echo "::warning ::Missing semicolon"
+        out="$(diff file1.txt file2.txt)"; if [ -n "$out" ]; then echo "DIFF: $out"; fi
