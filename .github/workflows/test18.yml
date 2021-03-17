@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Diff
       run: |
-        out="$(diff file1.txt file2.txt)"
+        out="$(diff file1.txt file2.txt)" || true
         if [ -n "$out" ]; then
-          echo "::warning ::Diff $out";
+          echo "::warning ::Diff $out"
         fi
