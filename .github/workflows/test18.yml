@@ -13,6 +13,8 @@ jobs:
       run: |
         out="$(diff file1.txt file2.txt)" || true
         out="${out//'\n'/'%0A'}"
+        out="${out//'<'/'-'}"
+        out="${out//'>'/'-'}"
         if [ -n "$out" ]; then
-          echo "::error ::\"Diff $out\""
+          echo "::warning ::Diff $out"
         fi
