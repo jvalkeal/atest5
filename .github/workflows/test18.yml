@@ -16,5 +16,5 @@ jobs:
         out="${out//'<'/'%3C'}"
         out="${out//'>'/'%3E'}"
         if [ -n "$out" ]; then
-          echo "::warning ::Diff $out for files"
+          echo "::error ::Diff $out"
         fi
