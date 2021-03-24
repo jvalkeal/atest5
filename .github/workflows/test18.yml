@@ -11,8 +11,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Diff
       run: |
-        raw="$(diff file1.txt file2.txt)" || true
-        out="${raw//'\n'/'%0A'}"
-        if [ -n "$out" ]; then
-          echo "::warning ::Diff $out for files"
-        fi
+        text="This is error1\nThis is error2"
+        text="${text//'\n'/'%0A'}" #replace '\n' with '%0A'
+        echo $text
+        echo "::error file=app.js,line=10,col=15::$text"
