@@ -11,8 +11,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Diff
       run: |
-        raw="$(diff file1.txt file2.txt)" || true
-        out="${raw//'\n'/'%0A'}"
+        out="$(diff file1.txt file2.txt)" || true
+        out="${out//'\n'/'%0A'}"
         out="${out//'<'/'%3C'}"
         out="${out//'>'/'%3E'}"
         if [ -n "$out" ]; then
