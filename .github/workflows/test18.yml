@@ -10,11 +10,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Diff
+      shell: bash
       run: |
         out="$(diff file1.txt file2.txt)" || true
         out="${out//'\n'/'%0A'}"
-        out="${out//'<'/'-'}"
-        out="${out//'>'/'-'}"
         if [ -n "$out" ]; then
           echo "::warning ::Diff $out"
         fi
