@@ -13,7 +13,7 @@ jobs:
       shell: bash
       run: |
         out="$(diff file1.txt file2.txt)" || true
-        out="${out//'\n'/'%0A'}"
+        out="${out//$'\n'/'%0A'}"
         if [ -n "$out" ]; then
           echo "::warning ::Diff $out"
         fi
