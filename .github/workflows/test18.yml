@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Diff
       run: |
-        text="This is error1\nThis is error2"
+        text="This is error1\n\nThis is error2\nThis is error3"
         text="${text//'\n'/'%0A'}" #replace '\n' with '%0A'
         echo $text
         echo "::error file=app.js,line=10,col=15::$text"
