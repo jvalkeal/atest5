@@ -12,15 +12,7 @@ jobs:
     - name: Diff
       run: |
         raw="$(diff file1.txt file2.txt)" || true
-        len="${#raw}"
-        out=""
-        for (( i = 0; i < len; i++ )); do
-          c="${raw:$i:1}"
-          case $c in
-            [a-zA-Z0-9.~_-,\<\>' ']) out+=$(printf '%s' "$c") ;;
-            *) out+=$(printf '%%%02X' "'$c") ;;
-          esac
-        done
+        out="${raw//'\n'/'%0A'}"
         if [ -n "$out" ]; then
           echo "::warning ::Diff %0A for files"
         fi
