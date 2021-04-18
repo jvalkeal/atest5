@@ -1,0 +1,24 @@
+name: Matrix1
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        k8s: [1.19.4-1-amazon2]
+        broker: [rabbitmq, kafka]
+    steps:
+      - name: Build
+        env:
+          BROKER: ${{ matrix.broker }}
+        run: |
+          if [ "$BROKER" = "rabbitmq" ]
+          then
+            BROKER=rabbit
+          fi
+          echo $BROKER
