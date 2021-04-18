@@ -19,6 +19,8 @@ jobs:
         run: |
           if [ "$BROKER" = "rabbitmq" ]
           then
-            BROKER=rabbit
+            BROKERNAME=rabbit
+          else
+            BROKERNAME=$BROKER
           fi
-          echo $BROKER
+          echo $BROKER $BROKERNAME
