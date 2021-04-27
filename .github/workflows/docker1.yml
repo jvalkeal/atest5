@@ -23,3 +23,15 @@ jobs:
         context: src/grafana/prometheus/docker/grafana
         push: true
         tags: jvalkeal/spring-cloud-dataflow-grafana-prometheus:${{ env.BUILD_ZOO_HANDLER_spring_cloud_dataflow_version }}
+    - name: Publish Grafana InfluxDB
+      uses: docker/build-push-action@v2
+      with:
+        context: src/grafana/influxdb/docker/grafana
+        push: true
+        tags: jvalkeal/spring-cloud-dataflow-grafana-influxdb:${{ env.BUILD_ZOO_HANDLER_spring_cloud_dataflow_version }}
+    - name: Publish Prometheus Local
+      uses: docker/build-push-action@v2
+      with:
+        context: src/grafana/prometheus/docker/prometheus-local
+        push: true
+        tags: jvalkeal/spring-cloud-dataflow-prometheus-local:${{ env.BUILD_ZOO_HANDLER_spring_cloud_dataflow_version }}
