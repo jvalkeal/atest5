@@ -1,0 +1,25 @@
+name: Docker1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: spring-cloud/spring-cloud-dataflow
+    - name: Setup env
+      run: |
+        echo BUILD_ZOO_HANDLER_spring_cloud_dataflow_version=2.8.0-M0 >> $GITHUB_ENV
+    - uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Publish Grafana Prometheus
+      uses: docker/build-push-action@v2
+      with:
+        context: src/grafana/prometheus/docker/grafana
+        push: true
+        tags: jvalkeal/spring-cloud-dataflow-grafana-prometheus:${{ env.BUILD_ZOO_HANDLER_spring_cloud_dataflow_version }}
