@@ -15,12 +15,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Handle Zoo Control1
+    - name: Handle Zoo Control
       uses: jvalkeal/build-zoo-handler@v0.0.4
       with:
         dispatch-handler-extract-context-properties: true
-    - name: Handle Zoo Control2
-      uses: jvalkeal/build-zoo-handler@v0.0.4
-      with:
-        ensure-env: |
-          BUILD_ZOO_HANDLER_milestone_version
+        dispatch-handler-token: ${{ secrets.PAT }}
+        dispatch-handler-max: 15
+        dispatch-handler-config: >
+          [
+            {
+              "if": "initial == true",
+              "action": "workflow_dispatch",
+              "workflow_dispatch": {
+                "owner": "jvalkeal",
+                "repo": "atest5",
+                "ref": "master",
+                "workflow": "zoo2.yml"
+              }
+            }
+          ]
