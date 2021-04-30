@@ -1,0 +1,31 @@
+name: Matrix1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+       include:
+         - skipper-version: 2.7.0-SNAPSHOT
+           dataflow-version: 2.8.0-SNAPSHOT
+           binder: rabbit
+           k8s-version: 1.18
+         - skipper-version: 2.7.0-SNAPSHOT
+           dataflow-version: 2.8.0-SNAPSHOT
+           binder: rabbit
+           k8s-version: 1.19
+         - skipper-version: 2.7.1-SNAPSHOT
+           dataflow-version: 2.8.1-SNAPSHOT
+           binder: kafka
+           k8s-version: 1.18
+    steps:
+      - name: Echo details
+        env:
+          SKIPPER: ${{ matrix.skipper-version }}
+          DATAFLOW: ${{ matrix.dataflow-version }}
+          BINDER: ${{ matrix.binder }}
+          K8S: ${{ matrix.k8s-version }}
+        run: echo $SKIPPER $DATAFLOW $BINDER $K8S
