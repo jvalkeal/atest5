@@ -1,4 +1,4 @@
-name: Matrix1
+name: Matrix2
 
 on:
   workflow_dispatch:
