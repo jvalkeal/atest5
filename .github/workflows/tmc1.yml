@@ -1,0 +1,16 @@
+name: Tmc1
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jvalkeal/tmc-toolkit@initial-work
+        with:
+          org: devecosystems
+      - name: Output
+        run: |
+          tmc version
