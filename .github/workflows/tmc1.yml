@@ -12,9 +12,9 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      - uses: jvalkeal/tmc-toolkit@initial-work
+      - uses: jvalkeal/tmc-toolkit@main
         with:
-          org: devecosystems
+          org: ${{ secrets.TMC_ORG }}
       - name: Output
         run: |
           tmc version
