@@ -4,9 +4,13 @@ on:
   workflow_dispatch:
 
 jobs:
-
   build:
-    runs-on: ubuntu-latest
+    name: Run
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: jvalkeal/tmc-toolkit@initial-work
         with:
