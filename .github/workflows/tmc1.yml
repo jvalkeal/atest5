@@ -6,15 +6,17 @@ on:
 jobs:
   build:
     name: Run
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      fail-fast: false
-      matrix:
-        operating-system: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ubuntu-latest
     steps:
       - uses: jvalkeal/tmc-toolkit@main
         with:
           org: ${{ secrets.TMC_ORG }}
+      - name: Configure tmc
+        env:
+          TMC_API_TOKEN: ${{ secrets.TMC_API_TOKEN }}
+        run: |
+          tmc login --name dummy --no-configure
+          tmc configure --management-cluster-name aws-hosted --provisioner-name scdf-provisioner
       - name: Output
         run: |
-          tmc version
+          tmc system context list
