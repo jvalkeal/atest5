@@ -8,7 +8,7 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     steps:
-      - uses: jvalkeal/tmc-toolkit@main
+      - uses: jvalkeal/tmc-toolkit@gh2-work1
         with:
           org: ${{ secrets.TMC_ORG }}
       - name: Configure tmc
