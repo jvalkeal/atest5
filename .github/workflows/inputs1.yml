@@ -28,6 +28,12 @@ jobs:
   testInputs:
     runs-on: ubuntu-latest
     steps:
+    - name: Print Inputs
+      run: |
+        echo INPUT_KEY1 --$INPUT_KEY1--
+        echo INPUT_KEY2 --$INPUT_KEY2--
+        echo INPUT_KEY3 --$INPUT_KEY3--
+        echo INPUT_KEY4 --$INPUT_KEY4--
     - name: Extract Inputs
       run: |
         echo VAL1=${INPUT_KEY1=-bar1} >> $GITHUB_ENV
