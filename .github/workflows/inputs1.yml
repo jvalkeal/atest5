@@ -36,10 +36,10 @@ jobs:
         echo INPUT_KEY4 --$INPUT_KEY4--
     - name: Extract Inputs
       run: |
-        echo VAL1=${INPUT_KEY1=-bar1} >> $GITHUB_ENV
-        echo VAL2=${INPUT_KEY2=-bar2} >> $GITHUB_ENV
-        echo VAL3=${INPUT_KEY3=-bar3} >> $GITHUB_ENV
-        echo VAL4=${INPUT_KEY4=-bar4} >> $GITHUB_ENV
+        echo VAL1=${INPUT_KEY1:-bar1} >> $GITHUB_ENV
+        echo VAL2=${INPUT_KEY2:-bar2} >> $GITHUB_ENV
+        echo VAL3=${INPUT_KEY3:-bar3} >> $GITHUB_ENV
+        echo VAL4=${INPUT_KEY4:-bar4} >> $GITHUB_ENV
     - name: Use Inputs
       run: |
         echo VAL1: $VAL1
