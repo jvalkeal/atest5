@@ -1,0 +1,13 @@
+name: Ghcli1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output
+        run: |
+          gh version
