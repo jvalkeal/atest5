@@ -8,18 +8,22 @@ jobs:
     name: Run
     runs-on: ubuntu-latest
     steps:
-      - uses: jvalkeal/tmc-toolkit@gh2-work1
+      - name: tmc1
+        uses: jvalkeal/tmc-toolkit@gh2-work1
         with:
           org: ${{ secrets.TMC_ORG }}
           token: ${{ secrets.TMC_API_TOKEN }}
+          context-name: test1
           management-cluster-name: aws-hosted
           provisioner-name: scdf-provisioner
-      # - name: Configure tmc
-      #   env:
-      #     TMC_API_TOKEN: ${{ secrets.TMC_API_TOKEN }}
-      #   run: |
-      #     tmc login --name dummy --no-configure
-      #     tmc configure --management-cluster-name aws-hosted --provisioner-name scdf-provisioner
+      - name: tmc2
+        uses: jvalkeal/tmc-toolkit@gh2-work1
+        with:
+          org: ${{ secrets.TMC_ORG }}
+          token: ${{ secrets.TMC_API_TOKEN }}
+          context-name: test2
+          management-cluster-name: aws-hosted
+          provisioner-name: scdf-provisioner
       - name: Output
         run: |
           tmc cluster list
