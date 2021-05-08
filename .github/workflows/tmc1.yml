@@ -11,12 +11,15 @@ jobs:
       - uses: jvalkeal/tmc-toolkit@gh2-work1
         with:
           org: ${{ secrets.TMC_ORG }}
-      - name: Configure tmc
-        env:
-          TMC_API_TOKEN: ${{ secrets.TMC_API_TOKEN }}
-        run: |
-          tmc login --name dummy --no-configure
-          tmc configure --management-cluster-name aws-hosted --provisioner-name scdf-provisioner
+          token: ${{ secrets.TMC_API_TOKEN }}
+          management-cluster-name: aws-hosted
+          provisioner-name: scdf-provisioner
+      # - name: Configure tmc
+      #   env:
+      #     TMC_API_TOKEN: ${{ secrets.TMC_API_TOKEN }}
+      #   run: |
+      #     tmc login --name dummy --no-configure
+      #     tmc configure --management-cluster-name aws-hosted --provisioner-name scdf-provisioner
       - name: Output
         run: |
-          tmc system context list
+          tmc cluster list
