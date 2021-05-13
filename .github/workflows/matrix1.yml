@@ -9,15 +9,18 @@ jobs:
     strategy:
       matrix:
        include:
-         - skipper-version: 2.7.0-SNAPSHOT
+         - nickname: oss-28x-rabbit-118
+           skipper-version: 2.7.0-SNAPSHOT
            dataflow-version: 2.8.0-SNAPSHOT
            binder: rabbit
            k8s-version: 1.18
-         - skipper-version: 2.7.0-SNAPSHOT
+         - nickname: oss-28x-rabbit-119
+           skipper-version: 2.7.0-SNAPSHOT
            dataflow-version: 2.8.0-SNAPSHOT
            binder: rabbit
            k8s-version: 1.19
-         - skipper-version: 2.7.1-SNAPSHOT
+         - nickname: pro-13x-kafka-118
+           skipper-version: 2.7.1-SNAPSHOT
            dataflow-version: 2.8.1-SNAPSHOT
            binder: kafka
            k8s-version: 1.18
