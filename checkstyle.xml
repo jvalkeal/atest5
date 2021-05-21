@@ -9,12 +9,10 @@
 		<property name="optional" value="true"/>
 	</module>
 
-	<!--
 	<module name="SuppressionFilter">
 		<property name="file" value="${checkstyle.additional.suppressions.file}"/>
 		<property name="optional" value="true"/>
 	</module>
-	-->
 
 	<!-- Root Checks -->
 	<module name="com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck">
