@@ -24,21 +24,21 @@ jobs:
           BUILD_ZOO_HANDLER_spring_cloud_dataflow_version: 2.8.0-RC1
 
         run: |
-          echo "#Release Notes"
-          echo "## Dependent Projects and Compatibility"
-          echo "Component | Version"
-          echo "--- | ---"
-          echo "Spring Cloud Dataflow Build | $BUILD_ZOO_HANDLER_spring_cloud_dataflow_build_version"
-          echo "Spring Cloud Dataflow Common | $BUILD_ZOO_HANDLER_spring_cloud_dataflow_common_version"
-          echo "Spring Cloud Dataflow Deployer | $BUILD_ZOO_HANDLER_spring_cloud_deployer_version"
-          echo "Spring Cloud Dataflow Deployer Local | $BUILD_ZOO_HANDLER_spring_cloud_deployer_local_version"
-          echo "Spring Cloud Dataflow Deployer CF | $BUILD_ZOO_HANDLER_spring_cloud_deployer_cloudfoundry_version"
-          echo "Spring Cloud Dataflow Deployer K8S | $BUILD_ZOO_HANDLER_spring_cloud_deployer_kubernetes_version"
-          echo "Spring Cloud Common Security Config | $BUILD_ZOO_HANDLER_spring_cloud_common_security_config_version"
-          echo "Spring Cloud Skipper | $BUILD_ZOO_HANDLER_spring_cloud_skipper_version"
-          echo "Spring Cloud Dataflow UI | $BUILD_ZOO_HANDLER_spring_cloud_dataflow_ui_version"
-          echo "Spring Cloud Dataflow Build | $BUILD_ZOO_HANDLER_spring_cloud_dataflow_version"
-          echo "## Issues"
+          echo "#Release Notes" >> $RELEASE_NOTES_FILE
+          echo "## Dependent Projects and Compatibility" >> $RELEASE_NOTES_FILE
+          echo "Component | Version" >> $RELEASE_NOTES_FILE
+          echo "--- | ---" >> $RELEASE_NOTES_FILE
+          echo "Spring Cloud Dataflow Build | $BUILD_ZOO_HANDLER_spring_cloud_dataflow_build_version" >> $RELEASE_NOTES_FILE
+          echo "Spring Cloud Dataflow Common | $BUILD_ZOO_HANDLER_spring_cloud_dataflow_common_version" >> $RELEASE_NOTES_FILE
+          echo "Spring Cloud Dataflow Deployer | $BUILD_ZOO_HANDLER_spring_cloud_deployer_version" >> $RELEASE_NOTES_FILE
+          echo "Spring Cloud Dataflow Deployer Local | $BUILD_ZOO_HANDLER_spring_cloud_deployer_local_version" >> $RELEASE_NOTES_FILE
+          echo "Spring Cloud Dataflow Deployer CF | $BUILD_ZOO_HANDLER_spring_cloud_deployer_cloudfoundry_version" >> $RELEASE_NOTES_FILE
+          echo "Spring Cloud Dataflow Deployer K8S | $BUILD_ZOO_HANDLER_spring_cloud_deployer_kubernetes_version" >> $RELEASE_NOTES_FILE
+          echo "Spring Cloud Common Security Config | $BUILD_ZOO_HANDLER_spring_cloud_common_security_config_version" >> $RELEASE_NOTES_FILE
+          echo "Spring Cloud Skipper | $BUILD_ZOO_HANDLER_spring_cloud_skipper_version" >> $RELEASE_NOTES_FILE
+          echo "Spring Cloud Dataflow UI | $BUILD_ZOO_HANDLER_spring_cloud_dataflow_ui_version" >> $RELEASE_NOTES_FILE
+          echo "Spring Cloud Dataflow Build | $BUILD_ZOO_HANDLER_spring_cloud_dataflow_version" >> $RELEASE_NOTES_FILE
+          echo "## Issues" >> $RELEASE_NOTES_FILE
 
           gh issue list \
             --repo spring-cloud/spring-cloud-dataflow-build \
