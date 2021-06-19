@@ -51,61 +51,61 @@ jobs:
           --repo spring-cloud/spring-cloud-dataflow-build \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_build_version \
           --state all --json number,title,labels \
-          --jq '{issues:map(select( any(.labels[]; .name != "automation/rlnotes-header " )) + {repo:"spring-cloud/spring-cloud-dataflow-build"})}' \
+          --jq '{issues:map(select((.labels | length == 0) or (any(.labels[]; .name != "automation/rlnotes-header"))) + {repo:"spring-cloud/spring-cloud-dataflow-build"})}' \
           > $RELEASE_NOTES_ISSUES1
         gh issue list \
           --repo spring-cloud/spring-cloud-dataflow-common \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_common_version \
           --state all --json number,title,labels \
-          --jq '{issues:map(select( any(.labels[]; .name != "automation/rlnotes-header " )) + {repo:"spring-cloud/spring-cloud-dataflow-common"})}' \
+          --jq '{issues:map(select((.labels | length == 0) or (any(.labels[]; .name != "automation/rlnotes-header"))) + {repo:"spring-cloud/spring-cloud-dataflow-common"})}' \
           > $RELEASE_NOTES_ISSUES2
         gh issue list \
           --repo spring-cloud/spring-cloud-deployer \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_deployer_version \
           --state all --json number,title,labels \
-          --jq '{issues:map(select( any(.labels[]; .name != "automation/rlnotes-header " )) + {repo:"spring-cloud/spring-cloud-deployer"})}' \
+          --jq '{issues:map(select((.labels | length == 0) or (any(.labels[]; .name != "automation/rlnotes-header"))) + {repo:"spring-cloud/spring-cloud-deployer"})}' \
           > $RELEASE_NOTES_ISSUES3
         gh issue list \
           --repo spring-cloud/spring-cloud-deployer-local \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_deployer_local_version \
           --state all --json number,title,labels \
-          --jq '{issues:map(select( any(.labels[]; .name != "automation/rlnotes-header " )) + {repo:"spring-cloud/spring-cloud-deployer-local"})}' \
+          --jq '{issues:map(select((.labels | length == 0) or (any(.labels[]; .name != "automation/rlnotes-header"))) + {repo:"spring-cloud/spring-cloud-deployer-local"})}' \
           > $RELEASE_NOTES_ISSUES4
         gh issue list \
           --repo spring-cloud/spring-cloud-deployer-cloudfoundry \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_deployer_cloudfoundry_version \
           --state all --json number,title,labels \
-          --jq '{issues:map(select( any(.labels[]; .name != "automation/rlnotes-header " )) + {repo:"spring-cloud/spring-cloud-deployer-cloudfoundry"})}' \
+          --jq '{issues:map(select((.labels | length == 0) or (any(.labels[]; .name != "automation/rlnotes-header"))) + {repo:"spring-cloud/spring-cloud-deployer-cloudfoundry"})}' \
           > $RELEASE_NOTES_ISSUES5
         gh issue list \
           --repo spring-cloud/spring-cloud-deployer-kubernetes \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_deployer_kubernetes_version \
           --state all --json number,title,labels \
-          --jq '{issues:map(select( any(.labels[]; .name != "automation/rlnotes-header " )) + {repo:"spring-cloud/spring-cloud-deployer-kubernetes"})}' \
+          --jq '{issues:map(select((.labels | length == 0) or (any(.labels[]; .name != "automation/rlnotes-header"))) + {repo:"spring-cloud/spring-cloud-deployer-kubernetes"})}' \
           > $RELEASE_NOTES_ISSUES6
         gh issue list \
           --repo spring-cloud/spring-cloud-common-security-config \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_common_security_config_version \
           --state all --json number,title,labels \
-          --jq '{issues:map(select( any(.labels[]; .name != "automation/rlnotes-header " )) + {repo:"spring-cloud/spring-cloud-common-security-config"})}' \
+          --jq '{issues:map(select((.labels | length == 0) or (any(.labels[]; .name != "automation/rlnotes-header"))) + {repo:"spring-cloud/spring-cloud-common-security-config"})}' \
           > $RELEASE_NOTES_ISSUES7
         gh issue list \
           --repo spring-cloud/spring-cloud-skipper \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_skipper_version \
           --state all --json number,title,labels \
-          --jq '{issues:map(select( any(.labels[]; .name != "automation/rlnotes-header " )) + {repo:"spring-cloud/spring-cloud-skipper"})}' \
+          --jq '{issues:map(select((.labels | length == 0) or (any(.labels[]; .name != "automation/rlnotes-header"))) + {repo:"spring-cloud/spring-cloud-skipper"})}' \
           > $RELEASE_NOTES_ISSUES8
         gh issue list \
           --repo spring-cloud/spring-cloud-dataflow-ui \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_ui_version \
           --state all --json number,title,labels \
-          --jq '{issues:map(select( any(.labels[]; .name != "automation/rlnotes-header " )) + {repo:"spring-cloud/spring-cloud-dataflow-ui"})}' \
+          --jq '{issues:map(select((.labels | length == 0) or (any(.labels[]; .name != "automation/rlnotes-header"))) + {repo:"spring-cloud/spring-cloud-dataflow-ui"})}' \
           > $RELEASE_NOTES_ISSUES9
         gh issue list \
           --repo spring-cloud/spring-cloud-dataflow \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_version \
           --state all --json number,title,labels \
-          --jq '{issues:map(select( any(.labels[]; .name != "automation/rlnotes-header " )) + {repo:"spring-cloud/spring-cloud-dataflow"})}' \
+          --jq '{issues:map(select((.labels | length == 0) or (any(.labels[]; .name != "automation/rlnotes-header"))) + {repo:"spring-cloud/spring-cloud-dataflow"})}' \
           > $RELEASE_NOTES_ISSUES10
         jq -s '{issues:(.[0].issues + .[1].issues + .[2].issues + .[3].issues + .[4].issues + .[5].issues + .[6].issues + .[7].issues + .[8].issues + .[9].issues), headers:(.[10].headers)}' \
           $RELEASE_NOTES_ISSUES1 \
