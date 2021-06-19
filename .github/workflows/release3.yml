@@ -18,6 +18,7 @@ jobs:
         RELEASE_NOTES_FILE: ${{runner.temp}}/release_notes.md5
         RELEASE_NOTES_DATA: ${{runner.temp}}/release_notes_data.json
         RELEASE_NOTES_HEADERS1: ${{runner.temp}}/release_notes_headers1.json
+        RELEASE_NOTES_HEADERS10: ${{runner.temp}}/release_notes_headers10.json
         RELEASE_NOTES_ISSUES1: ${{runner.temp}}/release_notes_issues1.json
         RELEASE_NOTES_ISSUES2: ${{runner.temp}}/release_notes_issues2.json
         RELEASE_NOTES_ISSUES3: ${{runner.temp}}/release_notes_issues3.json
@@ -41,12 +42,19 @@ jobs:
 
       run: |
         gh issue list \
+          --repo spring-cloud/spring-cloud-dataflow-build \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_build_version \
+          --label automation/rlnotes-header  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_HEADERS1
+        gh issue list \
           --repo spring-cloud/spring-cloud-dataflow \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_version \
           --label automation/rlnotes-header  \
           --state all --json title,body \
           --jq '{headers:map(.)}' \
-          > $RELEASE_NOTES_HEADERS1
+          > $RELEASE_NOTES_HEADERS10
         gh issue list \
           --repo spring-cloud/spring-cloud-dataflow-build \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_build_version \
@@ -107,7 +115,7 @@ jobs:
           --state all --json number,title,labels \
           --jq '{issues:map(select((.labels | length == 0) or (any(.labels[].name; startswith("automation/rlnotes")|not))) + {repo:"spring-cloud/spring-cloud-dataflow"})}' \
           > $RELEASE_NOTES_ISSUES10
-        jq -s '{issues:(.[0].issues + .[1].issues + .[2].issues + .[3].issues + .[4].issues + .[5].issues + .[6].issues + .[7].issues + .[8].issues + .[9].issues), headers:(.[10].headers)}' \
+        jq -s '{issues:(.[0].issues + .[1].issues + .[2].issues + .[3].issues + .[4].issues + .[5].issues + .[6].issues + .[7].issues + .[8].issues + .[9].issues), headers:(.[10].headers + .[11].headers)}' \
           $RELEASE_NOTES_ISSUES1 \
           $RELEASE_NOTES_ISSUES2 \
           $RELEASE_NOTES_ISSUES3 \
@@ -119,6 +127,7 @@ jobs:
           $RELEASE_NOTES_ISSUES9 \
           $RELEASE_NOTES_ISSUES10 \
           $RELEASE_NOTES_HEADERS1 \
+          $RELEASE_NOTES_HEADERS10 \
           > $RELEASE_NOTES_DATA
         mustache $RELEASE_NOTES_DATA .github/rlnotes.mustache > $RELEASE_NOTES_FILE
         gh release create v$BUILD_ZOO_HANDLER_spring_cloud_dataflow_version \
