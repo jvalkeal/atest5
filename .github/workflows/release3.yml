@@ -18,7 +18,25 @@ jobs:
         RELEASE_NOTES_FILE: ${{runner.temp}}/release_notes.md5
         RELEASE_NOTES_DATA: ${{runner.temp}}/release_notes_data.json
         RELEASE_NOTES_HEADERS1: ${{runner.temp}}/release_notes_headers1.json
+        RELEASE_NOTES_HEADERS2: ${{runner.temp}}/release_notes_headers2.json
+        RELEASE_NOTES_HEADERS3: ${{runner.temp}}/release_notes_headers3.json
+        RELEASE_NOTES_HEADERS4: ${{runner.temp}}/release_notes_headers4.json
+        RELEASE_NOTES_HEADERS5: ${{runner.temp}}/release_notes_headers5.json
+        RELEASE_NOTES_HEADERS6: ${{runner.temp}}/release_notes_headers6.json
+        RELEASE_NOTES_HEADERS7: ${{runner.temp}}/release_notes_headers7.json
+        RELEASE_NOTES_HEADERS8: ${{runner.temp}}/release_notes_headers8.json
+        RELEASE_NOTES_HEADERS9: ${{runner.temp}}/release_notes_headers9.json
         RELEASE_NOTES_HEADERS10: ${{runner.temp}}/release_notes_headers10.json
+        RELEASE_NOTES_FOOTERS1: ${{runner.temp}}/release_notes_footers1.json
+        RELEASE_NOTES_FOOTERS2: ${{runner.temp}}/release_notes_footers2.json
+        RELEASE_NOTES_FOOTERS3: ${{runner.temp}}/release_notes_footers3.json
+        RELEASE_NOTES_FOOTERS4: ${{runner.temp}}/release_notes_footers4.json
+        RELEASE_NOTES_FOOTERS5: ${{runner.temp}}/release_notes_footers5.json
+        RELEASE_NOTES_FOOTERS6: ${{runner.temp}}/release_notes_footers6.json
+        RELEASE_NOTES_FOOTERS7: ${{runner.temp}}/release_notes_footers7.json
+        RELEASE_NOTES_FOOTERS8: ${{runner.temp}}/release_notes_footers8.json
+        RELEASE_NOTES_FOOTERS9: ${{runner.temp}}/release_notes_footers9.json
+        RELEASE_NOTES_FOOTERS10: ${{runner.temp}}/release_notes_footers10.json
         RELEASE_NOTES_ISSUES1: ${{runner.temp}}/release_notes_issues1.json
         RELEASE_NOTES_ISSUES2: ${{runner.temp}}/release_notes_issues2.json
         RELEASE_NOTES_ISSUES3: ${{runner.temp}}/release_notes_issues3.json
@@ -49,12 +67,140 @@ jobs:
           --jq '{headers:map(.)}' \
           > $RELEASE_NOTES_HEADERS1
         gh issue list \
+          --repo spring-cloud/spring-cloud-dataflow-common \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_common_version \
+          --label automation/rlnotes-header  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_HEADERS2
+        gh issue list \
+          --repo spring-cloud/spring-cloud-deployer \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_deployer_version \
+          --label automation/rlnotes-header  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_HEADERS3
+        gh issue list \
+          --repo spring-cloud/spring-cloud-deployer-local \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_deployer_local_version \
+          --label automation/rlnotes-header  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_HEADERS4
+        gh issue list \
+          --repo spring-cloud/spring-cloud-deployer-cloudfoundry \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_deployer_cloudfoundry_version \
+          --label automation/rlnotes-header  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_HEADERS5
+        gh issue list \
+          --repo spring-cloud/spring-cloud-deployer-kubernetes \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_deployer_kubernetes_version \
+          --label automation/rlnotes-header  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_HEADERS6
+        gh issue list \
+          --repo spring-cloud/spring-cloud-common-security-config \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_common_security_config_version \
+          --label automation/rlnotes-header  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_HEADERS7
+        gh issue list \
+          --repo spring-cloud/spring-cloud-skipper \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_skipper_version \
+          --label automation/rlnotes-header  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_HEADERS8
+        gh issue list \
+          --repo spring-cloud/spring-cloud-dataflow-ui \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_ui_version \
+          --label automation/rlnotes-header  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_HEADERS9
+        gh issue list \
           --repo spring-cloud/spring-cloud-dataflow \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_version \
           --label automation/rlnotes-header  \
           --state all --json title,body \
           --jq '{headers:map(.)}' \
           > $RELEASE_NOTES_HEADERS10
+
+        gh issue list \
+          --repo spring-cloud/spring-cloud-dataflow-build \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_build_version \
+          --label automation/rlnotes-footer  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_FOOTERS1
+        gh issue list \
+          --repo spring-cloud/spring-cloud-dataflow-common \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_common_version \
+          --label automation/rlnotes-footer  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_FOOTERS2
+        gh issue list \
+          --repo spring-cloud/spring-cloud-deployer \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_deployer_version \
+          --label automation/rlnotes-footer  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_FOOTERS3
+        gh issue list \
+          --repo spring-cloud/spring-cloud-deployer-local \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_deployer_local_version \
+          --label automation/rlnotes-footer  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_FOOTERS4
+        gh issue list \
+          --repo spring-cloud/spring-cloud-deployer-cloudfoundry \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_deployer_cloudfoundry_version \
+          --label automation/rlnotes-footer  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_FOOTERS5
+        gh issue list \
+          --repo spring-cloud/spring-cloud-deployer-kubernetes \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_deployer_kubernetes_version \
+          --label automation/rlnotes-footer  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_FOOTERS6
+        gh issue list \
+          --repo spring-cloud/spring-cloud-common-security-config \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_common_security_config_version \
+          --label automation/rlnotes-footer  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_FOOTERS7
+        gh issue list \
+          --repo spring-cloud/spring-cloud-skipper \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_skipper_version \
+          --label automation/rlnotes-footer  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_FOOTERS8
+        gh issue list \
+          --repo spring-cloud/spring-cloud-dataflow-ui \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_ui_version \
+          --label automation/rlnotes-footer  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_FOOTERS9
+        gh issue list \
+          --repo spring-cloud/spring-cloud-dataflow \
+          --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_version \
+          --label automation/rlnotes-footer  \
+          --state all --json title,body \
+          --jq '{headers:map(.)}' \
+          > $RELEASE_NOTES_FOOTERS10
+
         gh issue list \
           --repo spring-cloud/spring-cloud-dataflow-build \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_build_version \
@@ -115,7 +261,8 @@ jobs:
           --state all --json number,title,labels \
           --jq '{issues:map(select((.labels | length == 0) or (any(.labels[].name; startswith("automation/rlnotes")|not))) + {repo:"spring-cloud/spring-cloud-dataflow"})}' \
           > $RELEASE_NOTES_ISSUES10
-        jq -s '{issues:(.[0].issues + .[1].issues + .[2].issues + .[3].issues + .[4].issues + .[5].issues + .[6].issues + .[7].issues + .[8].issues + .[9].issues), headers:(.[10].headers + .[11].headers)}' \
+
+        jq -s '{issues:(.[0].issues + .[1].issues + .[2].issues + .[3].issues + .[4].issues + .[5].issues + .[6].issues + .[7].issues + .[8].issues + .[9].issues), headers:(.[10].headers + .[11].headers + .[12].headers + .[13].headers + .[14].headers + .[15].headers + .[16].headers + .[17].headers + .[18].headers + .[19].headers), footers:(.[20].footers + .[21].footers + .[22].footers + .[23].footers + .[24].footers + .[25].footers + .[26].footers + .[27].footers + .[28].footers + .[29].footers)}' \
           $RELEASE_NOTES_ISSUES1 \
           $RELEASE_NOTES_ISSUES2 \
           $RELEASE_NOTES_ISSUES3 \
@@ -127,9 +274,29 @@ jobs:
           $RELEASE_NOTES_ISSUES9 \
           $RELEASE_NOTES_ISSUES10 \
           $RELEASE_NOTES_HEADERS1 \
+          $RELEASE_NOTES_HEADERS2 \
+          $RELEASE_NOTES_HEADERS3 \
+          $RELEASE_NOTES_HEADERS4 \
+          $RELEASE_NOTES_HEADERS5 \
+          $RELEASE_NOTES_HEADERS6 \
+          $RELEASE_NOTES_HEADERS7 \
+          $RELEASE_NOTES_HEADERS8 \
+          $RELEASE_NOTES_HEADERS9 \
           $RELEASE_NOTES_HEADERS10 \
+          $RELEASE_NOTES_FOOTERS1 \
+          $RELEASE_NOTES_FOOTERS2 \
+          $RELEASE_NOTES_FOOTERS3 \
+          $RELEASE_NOTES_FOOTERS4 \
+          $RELEASE_NOTES_FOOTERS5 \
+          $RELEASE_NOTES_FOOTERS6 \
+          $RELEASE_NOTES_FOOTERS7 \
+          $RELEASE_NOTES_FOOTERS8 \
+          $RELEASE_NOTES_FOOTERS9 \
+          $RELEASE_NOTES_FOOTERS10 \
           > $RELEASE_NOTES_DATA
+
         mustache $RELEASE_NOTES_DATA .github/rlnotes.mustache > $RELEASE_NOTES_FILE
+
         gh release create v$BUILD_ZOO_HANDLER_spring_cloud_dataflow_version \
           --draft \
           --title "Spring Cloud Data Flow $BUILD_ZOO_HANDLER_spring_cloud_dataflow_version" \
