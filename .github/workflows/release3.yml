@@ -8,7 +8,7 @@ jobs:
   staging:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.output.outputs.project-version }}
+      project-version: ${{ steps.output.outputs.project-version }}
     steps:
     - name: Output
       id: output
