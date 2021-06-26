@@ -5,8 +5,21 @@ on:
 
 jobs:
 
+  staging:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.output.outputs.project-version }}
+    steps:
+    - name: Output
+      id: output
+      env:
+        PROJECT_VERSION: 2.8.1
+      run: |
+        echo "::set-output name=project-version::$PROJECT_VERSION"
+
   build:
     runs-on: ubuntu-latest
+    needs: staging
     steps:
     - uses: actions/checkout@v2
     - name: Install Tooling
@@ -14,6 +27,7 @@ jobs:
         curl -sSL https://github.com/cbroglie/mustache/releases/download/v1.2.2/mustache_1.2.2_linux_amd64.tar.gz | sudo tar -C /usr/local/bin/ --no-same-owner -xzv mustache
     - name: Build
       env:
+        PROJECT_VERSION: ${{needs.staging.outputs.project-version}}
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         RELEASE_NOTES_FILE: ${{runner.temp}}/release_notes.md5
         RELEASE_NOTES_DATA: ${{runner.temp}}/release_notes_data.json
@@ -68,6 +82,7 @@ jobs:
         BUILD_ZOO_HANDLER_spring_cloud_dataflow_ui_version: 3.1.1
         BUILD_ZOO_HANDLER_spring_cloud_dataflow_version: 2.8.1
       run: |
+        echo "version is $PROJECT_VERSION"
         gh issue list \
           --repo spring-cloud/spring-cloud-dataflow-build \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_build_version \
@@ -208,7 +223,6 @@ jobs:
           --state all --json title,body \
           --jq '{footers:map(.),footerslength:(length)}' \
           > $RELEASE_NOTES_FOOTERS10
-
         echo "{\"name\":\"Spring Cloud Dataflow Build\",\"version\":\"$BUILD_ZOO_HANDLER_spring_cloud_dataflow_build_version\"}" > $RELEASE_NOTES_PROJECT1
         echo "{\"name\":\"Spring Cloud Dataflow Common\",\"version\":\"$BUILD_ZOO_HANDLER_spring_cloud_dataflow_common_version\"}" > $RELEASE_NOTES_PROJECT2
         echo "{\"name\":\"Spring Cloud Dataflow Deployer\",\"version\":\"$BUILD_ZOO_HANDLER_spring_cloud_deployer_version\"}" > $RELEASE_NOTES_PROJECT3
@@ -219,7 +233,6 @@ jobs:
         echo "{\"name\":\"Spring Cloud Skipper\",\"version\":\"$BUILD_ZOO_HANDLER_spring_cloud_skipper_version\"}" > $RELEASE_NOTES_PROJECT8
         echo "{\"name\":\"Spring Cloud Dataflow UI\",\"version\":\"$BUILD_ZOO_HANDLER_spring_cloud_dataflow_ui_version\"}" > $RELEASE_NOTES_PROJECT9
         echo "{\"name\":\"Spring Cloud Dataflow\",\"version\":\"$BUILD_ZOO_HANDLER_spring_cloud_dataflow_version\"}" > $RELEASE_NOTES_PROJECT10
-
         gh issue list \
           --repo spring-cloud/spring-cloud-dataflow-build \
           --milestone $BUILD_ZOO_HANDLER_spring_cloud_dataflow_build_version \
