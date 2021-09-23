@@ -4,6 +4,9 @@ inputs:
   version:
     description: 'dataflow version'
     required: true
+  fake:
+    description: 'dataflow version'
+    required: true
 runs:
   using: "composite"
   steps:
@@ -14,7 +17,7 @@ runs:
   - name: Print Stuff
     env:
       TAG: ${{ inputs.version }}
-      FAKE: ${{ secrets.FAKE }}
+      FAKE: ${{ inputs.fake }}
     shell: bash
     run: |
       pack version

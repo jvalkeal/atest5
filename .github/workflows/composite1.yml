@@ -12,3 +12,5 @@ jobs:
       uses: ./.github/actions/build-images
       with:
         version: 1.2.3-SNAPSHOT
+        fake: ${{ secrets.FAKE }}
+
