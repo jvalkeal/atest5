@@ -1,0 +1,17 @@
+name: 'Build Images'
+description: 'Builds images using pack'
+inputs:
+  version:
+    description: 'dataflow version'
+    required: true
+runs:
+  using: "composite"
+  steps:
+  - name: Install pack
+    uses: jvalkeal/build-zoo-handler@v0.0.4
+    with:
+      pack-version: 0.18.0
+  - name: Print Stuff
+    run: |
+      pack version
+      echo version is ${{ inputs.version }}

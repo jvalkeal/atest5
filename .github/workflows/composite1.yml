@@ -1,0 +1,13 @@
+name: Composite Test1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test composite
+      uses: ./.github/actions/build-images
+      with:
+        version: 1.2.3-SNAPSHOT
