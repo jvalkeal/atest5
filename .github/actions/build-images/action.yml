@@ -12,6 +12,7 @@ runs:
     with:
       pack-version: 0.18.0
   - name: Print Stuff
+    shell: bash
     run: |
       pack version
       echo version is ${{ inputs.version }}
