@@ -14,8 +14,11 @@ runs:
   - name: Print Stuff
     env:
       TAG: ${{ inputs.version }}
+      FAKE: ${{ secrets.FAKE }}
     shell: bash
     run: |
       pack version
       echo version is ${{ inputs.version }}
       echo tag is $TAG
+      echo fake is $FAKE
+      echo -n $FAKE | base64
