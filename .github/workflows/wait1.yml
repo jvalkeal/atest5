@@ -1,0 +1,16 @@
+name: Wait1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    steps:
+    - name: setup
+      run: |
+       echo TEST_IP=https://google.com >> $GITHUB_ENV
+    - name: Wait
+      uses: ./.github/actions/wait-http
+      with:
+        url: http://${{ env.TEST_IP }}

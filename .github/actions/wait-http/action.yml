@@ -1,0 +1,20 @@
+name: 'Wait http endpoint to become healthy'
+description: 'Uses wget to loop and wait non failing response'
+inputs:
+  url:
+    description: 'url to check'
+    required: true
+runs:
+  using: "composite"
+  steps:
+  - name: Build Images
+    env:
+      URL: ${{ inputs.url }}
+    shell: bash
+    run: |
+      for i in $(seq 10)
+      do
+        (wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 0 -O- $URL) && break || echo "waiting http $i/10 ..."
+        sleep 2
+      done
+      wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 0 -O- $URL
