@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: setup
       run: |
-       echo TEST_IP=https://google.com >> $GITHUB_ENV
+       echo TEST_IP=google.com >> $GITHUB_ENV
     - name: Wait
       uses: ./.github/actions/wait-http
       with:
