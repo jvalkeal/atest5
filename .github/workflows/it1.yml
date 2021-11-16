@@ -29,5 +29,5 @@ jobs:
           -pl spring-cloud-dataflow-server \
           -Dgroups=postgres \
           -Pfailsafe \
-          --batch-mode
+          --batch-mode \
           integration-test
