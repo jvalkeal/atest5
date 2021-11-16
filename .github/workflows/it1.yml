@@ -1,0 +1,33 @@
+name: IT1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+
+    - uses: jvalkeal/setup-maven@v1
+      with:
+        maven-version: 3.6.2
+
+    - uses: actions/checkout@v2
+      with:
+        repository: spring-cloud/spring-cloud-dataflow
+        path: spring-cloud-dataflow
+
+    - name: Tests
+      working-directory: ./spring-cloud-dataflow
+      run: |
+        mvn \
+          -s .settings.xml \
+          -pl spring-cloud-dataflow-server \
+          -Dgroups=postgres \
+          -Pfailsafe \
+          --batch-mode
+          integration-test
