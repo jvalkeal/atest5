@@ -28,7 +28,7 @@ jobs:
         dispatch-handler-token: ${{ secrets.PAT }}
         dispatch-handler-client-payload-data: >
           {
-            "event": "build-succeed"
+            "event": "build2-succeed"
           }
 
     # zoo failure
@@ -39,5 +39,5 @@ jobs:
         dispatch-handler-token: ${{ secrets.PAT }}
         dispatch-handler-client-payload-data: >
           {
-            "event": "build-failed"
+            "event": "build2-failed"
           }

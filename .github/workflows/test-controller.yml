@@ -29,7 +29,7 @@ jobs:
               }
             },
             {
-              "if": "data.event == 'build-succeed' && data.repo == 'atest5' && data.owner == 'jvalkeal'",
+              "if": "data.event == 'build1-succeed' && data.repo == 'atest5' && data.owner == 'jvalkeal'",
               "action": "workflow_dispatch",
               "workflow_dispatch": {
                 "owner": "jvalkeal",
@@ -39,10 +39,17 @@ jobs:
               }
             },
             {
-              "if": "data.event == 'build-failed'",
+              "if": "data.event == 'build1-failed'",
               "action": "fail",
               "fail": {
-                "message": "hi, something went wrong"
+                "message": "hi, something went wrong 1"
+              }
+            },
+            {
+              "if": "data.event == 'build2-failed'",
+              "action": "fail",
+              "fail": {
+                "message": "hi, something went wrong 2"
               }
             }
           ]
