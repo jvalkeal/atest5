@@ -1,0 +1,48 @@
+name: Test Controller
+
+on:
+  workflow_dispatch:
+    inputs:
+      build-zoo-handler:
+        description: 'Build Zoo Handler Payload'
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Handle Zoo Control
+      uses: jvalkeal/build-zoo-handler@v0.0.4
+      with:
+        dispatch-handler-token: ${{ secrets.PAT }}
+        dispatch-handler-config: >
+          [
+            {
+              "if": "initial == true",
+              "action": "workflow_dispatch",
+              "workflow_dispatch": {
+                "owner": "jvalkeal",
+                "repo": "atest5",
+                "ref": "master",
+                "workflow": "test-worker1.yml"
+              }
+            },
+            {
+              "if": "data.event == 'build-succeed' && data.repo == 'atest5' && data.owner == 'jvalkeal'",
+              "action": "workflow_dispatch",
+              "workflow_dispatch": {
+                "owner": "jvalkeal",
+                "repo": "atest5",
+                "ref": "master",
+                "workflow": "test-worker2.yml"
+              }
+            },
+            {
+              "if": "data.event == 'build-failed'",
+              "action": "fail",
+              "fail": {
+                "message": "hi, something went wrong"
+              }
+            }
+          ]

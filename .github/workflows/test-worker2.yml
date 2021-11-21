@@ -1,0 +1,43 @@
+name: Test Worker 2
+
+on:
+  workflow_dispatch:
+    inputs:
+      build-zoo-handler:
+        description: 'Build Zoo Handler Payload'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Extract Zoo Context Properties
+      uses: jvalkeal/build-zoo-handler@v0.0.4
+      with:
+        dispatch-handler-extract-context-properties: true
+
+    - name: Build and Publish
+      run: |
+        echo test_version $BUILD_ZOO_HANDLER_test_version
+        echo test_prerelease $BUILD_ZOO_HANDLER_test_prerelease
+
+    # zoo success
+    - name: Notify Build Success Zoo Handler Controller
+      uses: jvalkeal/build-zoo-handler@v0.0.4
+      with:
+        dispatch-handler-token: ${{ secrets.PAT }}
+        dispatch-handler-client-payload-data: >
+          {
+            "event": "build-succeed"
+          }
+
+    # zoo failure
+    - name: Notify Build Failure Zoo Handler Controller
+      if: ${{ failure() }}
+      uses: jvalkeal/build-zoo-handler@v0.0.4
+      with:
+        dispatch-handler-token: ${{ secrets.PAT }}
+        dispatch-handler-client-payload-data: >
+          {
+            "event": "build-failed"
+          }
