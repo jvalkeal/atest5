@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: test
     steps:
-      - run: echo hi
+      - run: date -u +"%Y-%m-%dT%H:%M:%SZ"
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
