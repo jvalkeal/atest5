@@ -12,6 +12,7 @@ jobs:
         with:
           distribution: adopt
           java-version: 11
+          set-java-home: false
       - name: run tests
         run: |
           java --version
