@@ -12,7 +12,6 @@ jobs:
         with:
           distribution: adopt
           java-version: 11
-          cache: maven
       - name: run tests
         run: |
           java --version
