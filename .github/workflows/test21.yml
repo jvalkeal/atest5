@@ -12,7 +12,13 @@ jobs:
         with:
           distribution: adopt
           java-version: 11
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          version: 22.0.0.2
+          java-version: 11
+          components: native-image
           set-java-home: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: run tests
         run: |
           java --version
