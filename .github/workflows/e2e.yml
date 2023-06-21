@@ -1,0 +1,13 @@
+name: e2e
+run-name: ${{ format('{0} ({1})', github.workflow, github.ref) }}
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - run: |
+          echo hi
