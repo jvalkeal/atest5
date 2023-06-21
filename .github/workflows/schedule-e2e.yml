@@ -14,7 +14,7 @@ jobs:
     if: github.repository_owner == 'jvalkeal'
     strategy:
       matrix:
-        branch: [ main ]
+        branch: [ master ]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
