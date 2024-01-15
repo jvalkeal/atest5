@@ -1,0 +1,22 @@
+name: Token1
+on: [workflow_dispatch]
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+      - uses: octokit/request-action@v2.x
+        id: get-installation-repositories
+        with:
+          route: GET /installation/repositories
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+      - run: echo "$MULTILINE_JSON_STRING"
+        env:
+          MULTILINE_JSON_STRING: ${{ steps.get-installation-repositories.outputs.data }}
