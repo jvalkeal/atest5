@@ -8,8 +8,8 @@ jobs:
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:
-          app-id: ${{ vars.APP_ID }}
-          private-key: ${{ secrets.PRIVATE_KEY }}
+          app-id: ${{ vars.JVALKEAL_ORG_SPRING_CLI_BOT_APP_ID }}
+          private-key: ${{ secrets.JVALKEAL_ORG_SPRING_CLI_BOT_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
       - uses: octokit/request-action@v2.x
         id: get-installation-repositories
