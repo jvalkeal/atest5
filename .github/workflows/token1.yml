@@ -6,17 +6,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/create-github-app-token@v1
-        id: app-token
+        id: app-token-1
         with:
           app-id: ${{ vars.JVALKEAL_ORG_SPRING_CLI_BOT_APP_ID }}
           private-key: ${{ secrets.JVALKEAL_ORG_SPRING_CLI_BOT_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
+          owner: jvalkeal
+          repositories: spring-cli
+      - uses: actions/create-github-app-token@v1
+        id: app-token-2
+        with:
+          app-id: ${{ vars.JVALKEAL_ORG_SPRING_CLI_BOT_APP_ID }}
+          private-key: ${{ secrets.JVALKEAL_ORG_SPRING_CLI_BOT_PRIVATE_KEY }}
+          owner: jvalkeal-org
+          repositories: homebrew-spring-cli
       - uses: octokit/request-action@v2.x
-        id: get-installation-repositories
+        id: get-installation-repositories-1
         with:
           route: GET /installation/repositories
         env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.app-token-1.outputs.token }}
+      - uses: octokit/request-action@v2.x
+        id: get-installation-repositories-2
+        with:
+          route: GET /installation/repositories
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token-2.outputs.token }}
       - run: echo "$MULTILINE_JSON_STRING"
         env:
-          MULTILINE_JSON_STRING: ${{ steps.get-installation-repositories.outputs.data }}
+          MULTILINE_JSON_STRING: ${{ steps.get-installation-repositories-1.outputs.data }}
+      - run: echo "$MULTILINE_JSON_STRING"
+        env:
+          MULTILINE_JSON_STRING: ${{ steps.get-installation-repositories-2.outputs.data }}
